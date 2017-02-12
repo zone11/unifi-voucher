@@ -41,28 +41,33 @@ if ($login == 1) {
 	if(sizeof($voucher) > 0) {
 		$voucherPrint = substr($voucher[0],0,5)."-".substr($voucher[0],5,5);
 		echo "Voucher: ".$voucherPrint."\n";
-
+		
+		// Init printer
 		$printer -> initialize();
+		
+		// Logo centered
 		$printer -> setJustification(Printer::JUSTIFY_CENTER);
 		$printer -> graphics($logo);
 		$printer -> feed();
-
+		
+		// Name and title
 		$printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
 		$printer -> text($unifi_wifi_name);
 		$printer -> selectPrintMode();
 		$printer -> feed();
 		$printer -> text($unifi_wifi_title);
 		$printer -> feed(2);
-
+		
+		// Voucher code
 		$printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
 		$printer -> text("Voucher");
 		$printer -> feed();
 		$printer -> text($voucherPrint);
 		$printer -> feed(5);
 
+		// Cut and finish
 		$printer -> cut();
 		$printer -> pulse();
-
 	}
 } else {
 	echo "Login: FAILED!\n";
