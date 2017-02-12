@@ -20,6 +20,8 @@ $unifi_password = 'password';
 $unifi_baseurl = 'https://1.2.3.4:8443';
 $unifi_wifi_name = 'My WiFi';
 $unifi_wifi_title = 'Free as beer!';
+$unifi_voucher_note = "POS Voucher using API: ".date("Y.m.d H:i:s");
+$unifi_voucher_duration = '1440'; // 1 day
 
 // Prepare Printer and Logo
 $connector = new NetworkPrintConnector("1.2.3.4",9100);
@@ -33,7 +35,7 @@ if ($login == 1) {
 	echo("Login: OK!\n");
 
 	//Create Voucher
-	$voucher = $unifi->create_voucher(1440, 1,0,"Buttonprinter: ".date("Y.m.d"));
+	$voucher = $unifi->create_voucher($unifi_voucher_time, 1,0,$unifi_voucher_note);
 	
 	// We got a voucher as array item 0
 	if(sizeof($voucher) > 0) {
