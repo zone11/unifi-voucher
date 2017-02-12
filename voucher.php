@@ -1,9 +1,6 @@
 <?php
-// Using work from:
-// https://github.com/malle-pietje/Unifi-API-browser
-// https://github.com/mike42/escpos-php
-
-// Christian Egger, zone11@mac.COMPOSITE_ADD
+// Christian Egger, zone11@mac.com
+// 2017-02-12
 
 // Composer
 require __DIR__ . '/vendor/autoload.php';
