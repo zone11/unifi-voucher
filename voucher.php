@@ -1,6 +1,8 @@
 <?php
 // Christian Egger, zone11@mac.com
-// 2017-02-12
+// 2017-04-16
+// 
+// - Added POST variable for duration.
 
 // Composer
 require __DIR__ . '/vendor/autoload.php';
@@ -10,6 +12,15 @@ require("./unifi/class.unifi.php");
 
 // Config
 require("./config.php");
+
+// POST Data
+if( !isset($_POST['duration']) ) {
+	echo ("POST: duration is missing!");
+	exit();
+} else {
+	$voucherDuration = 60 * intval($_POST['duration']);
+	echo("Duration (min): ".$voucherDuration."\n");
+}
 
 // Printer
 use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
@@ -28,7 +39,7 @@ if ($login == 1) {
 	echo("Login: OK!\n");
 
 	//Create Voucher
-	$voucher = $unifi->create_voucher($cfgUnifiVoucherDuration,1,0,$cfgUnifiVoucherNote);
+	$voucher = $unifi->create_voucher($voucherDuration,1,0,$cfgUnifiVoucherNote);
 	
 	// We got a voucher as array item 0
 	if(sizeof($voucher) > 0) {
