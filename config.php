@@ -13,6 +13,10 @@ $cfgUnifiVoucherDuration = '1440'; // 1 day
 $cfgPrintStrWifiName = 'My WIFI SSID';
 $cfgPrintStrWifiTitle = 'Internet - Free as beer!';
 $cfgPrintLogoFile = 'resources/logo.png';
+$cfgPrintTitleVoucher = "Voucher";
+$cfgPrintTitleDuration = "Duration"; 
+$cfgPrintTextDay = "Day"; 
+$cfgPrintTextDays = "Days"; 
 
 // Printer
 $cfgPrinterConnection = "net";

@@ -1,8 +1,9 @@
 <?php
 // Christian Egger, zone11@mac.com
-// 2017-04-16
+// 2017-04-17
 // 
 // - Added POST variable for duration.
+// - Added duration on printing
 
 // Composer
 require __DIR__ . '/vendor/autoload.php';
@@ -18,8 +19,7 @@ if( !isset($_POST['duration']) ) {
 	echo ("POST: duration is missing!");
 	exit();
 } else {
-	$voucherDuration = 60 * intval($_POST['duration']);
-	echo("Duration (min): ".$voucherDuration."\n");
+	$voucherDuration = intval($_POST['duration']); // in hours
 }
 
 // Printer
@@ -36,15 +36,28 @@ $logo = EscposImage::load($cfgPrintLogoFile, false);
 $unifi = new unifiapi($cfgUnifiUsername, $cfgUnifiPassword, $cfgUnifiBaseurl, $cfgUnifiSiteid);
 $login = $unifi->login();
 if ($login == 1) {
+	// Debug
 	echo("Login: OK!\n");
 
 	//Create Voucher
-	$voucher = $unifi->create_voucher($voucherDuration,1,0,$cfgUnifiVoucherNote);
+	$voucher = $unifi->create_voucher(($voucherDuration*60),1,0,$cfgUnifiVoucherNote);
 	
 	// We got a voucher as array item 0
 	if(sizeof($voucher) > 0) {
-		$voucherPrint = substr($voucher[0],0,5)."-".substr($voucher[0],5,5);
-		echo "Voucher: ".$voucherPrint."\n";
+		// Form strings for printing
+		$voucherCodePrint = substr($voucher[0],0,5)."-".substr($voucher[0],5,5);
+		$voucherDurationPrint = floor($voucherDuration/24);
+		
+		// Add day/days to Duration
+		if ($voucherDurationPrint > 1) {
+			$voucherDurationPrint .= " ".$cfgPrintTextDays;
+		} else {
+			$voucherDurationPrint .= " ".$cfgPrintTextDay;
+		}
+		
+		// Debug
+		echo "Code: ".$voucherCodePrint."\n";
+		echo "Duration: ".$voucherDurationPrint."\n";
 		
 		// Init printer
 		$printer -> initialize();
@@ -64,9 +77,16 @@ if ($login == 1) {
 		
 		// Voucher code
 		$printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
-		$printer -> text("Voucher");
+		$printer -> text($cfgPrintTitleVoucher);
 		$printer -> feed();
-		$printer -> text($voucherPrint);
+		$printer -> text($voucherCodePrint);
+		$printer -> feed(2);
+				
+		// Duration
+		$printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
+		$printer -> text($cfgPrintTitleDuration);
+		$printer -> feed();
+		$printer -> text($voucherDurationPrint);
 		$printer -> feed(5);
 
 		// Cut and finish
