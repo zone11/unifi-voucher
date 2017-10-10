@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
+    'UniFi_API\\' => array($vendorDir . '/art-of-wifi/unifi-api-client/src'),
     'Mike42\\' => array($vendorDir . '/mike42/escpos-php/src/Mike42'),
 );

@@ -1,5 +1,6 @@
 {
     "require": {
-        "mike42/escpos-php": "^1.5"
+        "mike42/escpos-php": "^1.5",
+        "art-of-wifi/unifi-api-client": "^1.1"
     }
 }

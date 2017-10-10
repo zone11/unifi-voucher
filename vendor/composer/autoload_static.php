@@ -4,12 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit914f341ad161afff7327627c9788fd05
+class ComposerStaticInit8d99cd67b8320848718bf13eb73cb373
 {
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'U' => 
         array (
-            'Symfony\\Component\\EventDispatcher\\' => 34,
+            'UniFi_API\\' => 10,
         ),
         'M' => 
         array (
@@ -18,9 +18,9 @@ class ComposerStaticInit914f341ad161afff7327627c9788fd05
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Component\\EventDispatcher\\' => 
+        'UniFi_API\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
+            0 => __DIR__ . '/..' . '/art-of-wifi/unifi-api-client/src',
         ),
         'Mike42\\' => 
         array (
@@ -28,26 +28,11 @@ class ComposerStaticInit914f341ad161afff7327627c9788fd05
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'G' => 
-        array (
-            'Guzzle\\Tests' => 
-            array (
-                0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/tests',
-            ),
-            'Guzzle' => 
-            array (
-                0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
-            ),
-        ),
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit914f341ad161afff7327627c9788fd05::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit914f341ad161afff7327627c9788fd05::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit914f341ad161afff7327627c9788fd05::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8d99cd67b8320848718bf13eb73cb373::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8d99cd67b8320848718bf13eb73cb373::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

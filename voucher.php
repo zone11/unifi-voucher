@@ -1,15 +1,13 @@
 <?php
 // Christian Egger, zone11@mac.com
-// 2017-04-17
+// 2017-10-09
 // 
-// - Added POST variable for duration.
-// - Added duration on printing
+// - New UniFi API
+// - Printer Exception
+
 
 // Composer
 require __DIR__ . '/vendor/autoload.php';
-
-// Unifi Class from UniFi API Browser
-require("./unifi/class.unifi.php");
 
 // Config
 require("./config.php");
@@ -27,25 +25,38 @@ use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\Printer;
 
+// Connect Printer Socket
+try {
+	$printerConnector = new NetworkPrintConnector($cfgPrinterNetIP, $cfgPrinterNetPort,5);
+} catch (Exception $e) {
+	echo('Printer Exception: '.$e->getMessage()."\n");
+	exit();
+}
+
 // Prepare Printer and Logo
-$printerConnector = new NetworkPrintConnector($cfgPrinterNetIP, $cfgPrinterNetPort);
 $printer = new Printer($printerConnector);
 $logo = EscposImage::load($cfgPrintLogoFile, false);
 
-// Connect!
-$unifi = new unifiapi($cfgUnifiUsername, $cfgUnifiPassword, $cfgUnifiBaseurl, $cfgUnifiSiteid);
+// unifiapi
+$unifi = new UniFi_API\Client($cfgUnifiUsername, $cfgUnifiPassword, $cfgUnifiBaseurl, $cfgUnifiSiteid, false);
+$unifi->set_debug(false);
 $login = $unifi->login();
+
 if ($login == 1) {
 	// Debug
-	echo("Login: OK!\n");
+	echo("Login: OK!<br>\n");
 
 	//Create Voucher
-	$voucher = $unifi->create_voucher(($voucherDuration*60),1,0,$cfgUnifiVoucherNote);
+	$voucher_timestamp = $unifi->create_voucher(($voucherDuration*60),1,0,$cfgUnifiVoucherNote);
+	$voucher_timestamp_int = $voucher_timestamp[0]->create_time;
+	echo "Voucher Timestamp: ".$voucher_timestamp_int."<br>\n";
+	
+	$voucher = $unifi->stat_voucher($voucher_timestamp_int);
 	
 	// We got a voucher as array item 0
 	if(sizeof($voucher) > 0) {
 		// Form strings for printing
-		$voucherCodePrint = substr($voucher[0],0,5)."-".substr($voucher[0],5,5);
+		$voucherCodePrint = substr($voucher[0]->code,0,5)."-".substr($voucher[0]->code,5,5);
 		$voucherDurationPrint = floor($voucherDuration/24);
 		
 		// Add day/days to Duration
@@ -56,8 +67,8 @@ if ($login == 1) {
 		}
 		
 		// Debug
-		echo "Code: ".$voucherCodePrint."\n";
-		echo "Duration: ".$voucherDurationPrint."\n";
+		echo "Code: ".$voucherCodePrint."<br>\n";
+		echo "Duration: ".$voucherDurationPrint."<br>\n";
 		
 		// Init printer
 		$printer -> initialize();

@@ -87,18 +87,22 @@ Many thermal receipt printers support ESC/POS to some degree. This driver has be
 - Excelvan HOP-E801
 - Excelvan ZJ-8220
 - Gainscha GP-5890x (Also marketed as EC Line 5890x)
-- Gainscha GP-U80300I
+- Gainscha GP-U80300I (Also marketed as gprinter GP-U80300I)
+- gprinter GP-U80160I
 - Hasar HTP 250
 - Metapace T-1
 - Okipos 80 Plus III
 - P-822D
 - P85A-401 (make unknown)
 - Rongta RP326US
+- Rongta RP58-U
 - SEYPOS PRP-300 (Also marketed as TYSSO PRP-300)
 - Silicon SP-201 / RP80USE
 - Star TSP100 ECO
 - Star TSP-650
 - Star TUP-592
+- SPRT SP-POS88V
+- Xprinter F-900
 - Xprinter XP-Q800
 - Venus V248T
 - Zjiang NT-58H
@@ -137,6 +141,20 @@ git clone https://github.com/mike42/escpos-php vendor/mike42/escpos-php
 <?php
 require __DIR__ . '/vendor/mike42/escpos-php/autoload.php';
 ```
+
+#### Requirements
+
+To maintain compatibility with as many systems as possible, this driver has few
+hard dependencies:
+
+- PHP 5.3 or above
+- `mbstring` extension, since the driver accepts UTF-8 encoding.
+
+It is also suggested that you install either `imagick` or `gd`, so that you can
+print images.
+
+A number of optional packages can be added to enable more specific features. These
+are described in the "suggest" section of [composer.json](https://github.com/mike42/escpos-php/tree/master/composer.json).
 
 ### The 'Hello World' receipt
 
