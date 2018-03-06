@@ -1,81 +1,24 @@
 [
     {
-        "name": "mike42/escpos-php",
-        "version": "v1.5.2",
-        "version_normalized": "1.5.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/mike42/escpos-php.git",
-            "reference": "bb24755ef3d444fcc7aa6af70bd8967fc391d760"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/mike42/escpos-php/zipball/bb24755ef3d444fcc7aa6af70bd8967fc391d760",
-            "reference": "bb24755ef3d444fcc7aa6af70bd8967fc391d760",
-            "shasum": ""
-        },
-        "require": {
-            "ext-mbstring": "*",
-            "php": ">=5.3.9"
-        },
-        "require-dev": {
-            "guzzlehttp/guzzle": "~3.0|~4.0|~5.0|~6.0",
-            "phpunit/phpunit": "4.8.*",
-            "squizlabs/php_codesniffer": "2.*"
-        },
-        "suggest": {
-            "ext-gd": "Used for image printing if present.",
-            "ext-imagick": "Will be used for image printing if present. Required for PDF printing or use of custom fonts.",
-            "guzzlehttp/guzzle": "Allows the use of the ApiConnector to send print jobs over HTTP."
-        },
-        "time": "2017-05-18T10:29:56+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Mike42\\": "src/Mike42"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Michael Billington",
-                "email": "michael.billington@gmail.com"
-            }
-        ],
-        "description": "PHP receipt printer library for use with ESC/POS-compatible thermal and impact printers",
-        "homepage": "https://github.com/mike42/escpos-php",
-        "keywords": [
-            "ESC-POS",
-            "driver",
-            "escpos",
-            "print",
-            "receipt"
-        ]
-    },
-    {
         "name": "art-of-wifi/unifi-api-client",
-        "version": "v1.1.17",
-        "version_normalized": "1.1.17.0",
+        "version": "v1.1.24",
+        "version_normalized": "1.1.24.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Art-of-WiFi/UniFi-API-client.git",
-            "reference": "6fd7e6e5986871c91f0fac564315f8451ebde888"
+            "reference": "14f4d58b0288998202c77da8a50f58a9889972f9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Art-of-WiFi/UniFi-API-client/zipball/6fd7e6e5986871c91f0fac564315f8451ebde888",
-            "reference": "6fd7e6e5986871c91f0fac564315f8451ebde888",
+            "url": "https://api.github.com/repos/Art-of-WiFi/UniFi-API-client/zipball/14f4d58b0288998202c77da8a50f58a9889972f9",
+            "reference": "14f4d58b0288998202c77da8a50f58a9889972f9",
             "shasum": ""
         },
         "require": {
             "ext-curl": "*",
             "php": ">=5.4.0"
         },
-        "time": "2017-10-10T07:37:29+00:00",
+        "time": "2018-02-01T16:11:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -103,6 +46,63 @@
             "controller",
             "ubiquiti",
             "unifi"
+        ]
+    },
+    {
+        "name": "mike42/escpos-php",
+        "version": "v1.6",
+        "version_normalized": "1.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mike42/escpos-php.git",
+            "reference": "995d9a74d4fec9e0b99ddaf308bac4fec05efc40"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mike42/escpos-php/zipball/995d9a74d4fec9e0b99ddaf308bac4fec05efc40",
+            "reference": "995d9a74d4fec9e0b99ddaf308bac4fec05efc40",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">=5.3.9"
+        },
+        "require-dev": {
+            "guzzlehttp/guzzle": "~3.0|~4.0|~5.0|~6.0",
+            "phpunit/phpunit": "4.8.*",
+            "squizlabs/php_codesniffer": "2.*"
+        },
+        "suggest": {
+            "ext-gd": "Used for image printing if present.",
+            "ext-imagick": "Will be used for image printing if present. Required for PDF printing or use of custom fonts.",
+            "guzzlehttp/guzzle": "Allows the use of the ApiConnector to send print jobs over HTTP."
+        },
+        "time": "2017-11-05T10:18:27+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Mike42\\": "src/Mike42"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Billington",
+                "email": "michael.billington@gmail.com"
+            }
+        ],
+        "description": "PHP receipt printer library for use with ESC/POS-compatible thermal and impact printers",
+        "homepage": "https://github.com/mike42/escpos-php",
+        "keywords": [
+            "ESC-POS",
+            "driver",
+            "escpos",
+            "print",
+            "receipt"
         ]
     }
 ]
