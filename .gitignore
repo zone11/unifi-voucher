@@ -1,6 +1,7 @@
 # Created by https://www.gitignore.io/api/macos,composer
 
 ### Composer ###
+composer.lock
 composer.phar
 /vendor/
 
