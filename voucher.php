@@ -1,10 +1,10 @@
 <?php
 // Christian Egger, zone11@mac.com
-// 2017-10-09
+// 2021-09-12
 // 
 // - New UniFi API
 // - Printer Exception
-
+// - PHP8 Testing and CLI
 
 // Composer
 require __DIR__ . '/vendor/autoload.php';
@@ -13,9 +13,15 @@ require __DIR__ . '/vendor/autoload.php';
 require("./config.php");
 
 // POST Data
-if( !isset($_POST['duration']) ) {
-	echo ("POST: duration is missing!");
-	exit();
+if(!isset($_POST['duration'])) {
+	echo ("POST: The duration is missing!\n");
+	if(defined('STDIN')) {
+	  echo("Running from CLI, so lets take a duration from 1 day\n"); 
+	  $voucherDuration = 24;
+	} else {
+		echo("Sorry, we're leaving here...");
+		exit();
+	}
 } else {
 	$voucherDuration = intval($_POST['duration']); // in hours
 }
