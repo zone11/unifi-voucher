@@ -10,7 +10,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 // Config
-require("./config.php");
+require __DIR__ . '/config.php';
 
 // POST Data
 if(!isset($_POST['duration'])) {
